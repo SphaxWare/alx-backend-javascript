@@ -2,6 +2,7 @@ const fs = require('fs');
 
 const countStudents = (path) => new Promise((resolve, reject) => {
   // Read the file asynchronously
+  let result;
   fs.readFile(path, 'utf8', (err, data) => {
     if (err) {
       reject(new Error('Cannot load the database'));
@@ -39,14 +40,16 @@ const countStudents = (path) => new Promise((resolve, reject) => {
 
     // Log the total number of students
     const totalStudents = lines.length;
-    console.log(`Number of students: ${totalStudents}`);
+    result = `Number of students: ${totalStudents}`;
 
     // Log the number of students in each field
     for (const [field, students] of Object.entries(studentsByField)) {
-      console.log(`Number of students in ${field}: ${students.length}. List: ${students.join(', ')}`);
+      result += '\n'
+      result += `Number of students in ${field}: ${students.length}. List: ${students.join(', ')}`;
     }
+    console.log(result)
 
-    resolve();
+    resolve(result);
   });
 });
 
