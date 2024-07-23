@@ -4,17 +4,14 @@ const countStudents = (path) => {
   try {
     // Read the file synchronously
     const data = fs.readFileSync(path, 'utf8');
-    console.log(`data: ${data}`)
     const lines = data.split('\n').filter((line) => line.trim() !== '');
     // Remove the header line
     const header = lines.shift();
-    console.log(`header: ${header}`)
     if (header === undefined) {
       throw new Error('Cannot load the database');
     }
     const studentsByField = {};
     lines.forEach((line) => {
-      console.log(`line: ${line}`)
       const [firstname, lastname, age, field] = line.split(',');
       // Skip invalid lines
       if (!firstname || !lastname || !age || !field) {
@@ -34,7 +31,7 @@ const countStudents = (path) => {
       console.log(`Number of students in ${field}: ${students.length}. List: ${students.join(', ')}`);
     }
   } catch (error) {
-      throw new Error('Cannot load the database');
+    throw new Error('Cannot load the database');
   }
 };
 
