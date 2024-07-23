@@ -13,6 +13,7 @@ const app = http.createServer((req, res) => {
     // call countstudents
     countStudents(path)
       .then((result) => {
+        res.writeHead(200, { 'Content-Type': 'text/plain' });
         res.end(`This is the list of our students\n${result}`);
       })
       .catch((error) => {
