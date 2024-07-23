@@ -41,13 +41,11 @@ const countStudents = (path) => new Promise((resolve, reject) => {
     // Log the total number of students
     const totalStudents = lines.length;
     result = `Number of students: ${totalStudents}`;
-    console.log(`Number of students: ${totalStudents}`);
 
     // Log the number of students in each field
     for (const [field, students] of Object.entries(studentsByField)) {
       result += '\n';
       result += `Number of students in ${field}: ${students.length}. List: ${students.join(', ')}`;
-      console.log(`Number of students in ${field}: ${students.length}. List: ${students.join(', ')}`);
     }
     resolve(result);
   });
